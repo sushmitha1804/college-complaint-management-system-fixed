@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusCare | Complaint Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="toast" class="toast" role="status"></div>
+  <main id="authView" class="auth-layout">
+    <section class="auth-brand">
+      <div class="brand-mark">C</div>
+      <div class="brand-name">Campus<span>Care</span></div>
+      <div class="brand-copy">
+        <p class="eyebrow">A BETTER CAMPUS STARTS HERE</p>
+        <h1>Your voice.<br><em>Real change.</em></h1>
+        <p class="brand-description">A transparent, simple way to report campus concerns and follow every update until it is resolved.</p>
+      </div>
+      <div class="brand-bottom"><span class="status-dot"></span> A safer, more responsive campus community</div>
+      <div class="decor decor-one"></div><div class="decor decor-two"></div>
+    </section>
+    <section class="auth-panel">
+      <div class="auth-card">
+        <div class="mobile-brand"><div class="brand-mark">C</div><div class="brand-name">Campus<span>Care</span></div></div>
+        <div class="auth-heading">
+          <p class="eyebrow" id="authEyebrow">WELCOME TO CAMPUSCARE</p>
+          <h2 id="authTitle">Good to see you.</h2>
+          <p id="authSubtitle">Sign in to manage your campus concerns.</p>
+        </div>
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="loginTab" type="button">Sign in</button>
+          <button class="auth-tab" id="registerTab" type="button">Create account</button>
+        </div>
+        <form id="loginForm" class="auth-form">
+          <label>Email address<input type="email" name="email" placeholder="you@college.edu" autocomplete="email" required></label>
+          <label>Password<input type="password" name="password" placeholder="Enter your password" autocomplete="current-password" required></label>
+          <button class="btn btn-primary btn-full" type="submit">Sign in <span>→</span></button>
+        </form>
+        <form id="registerForm" class="auth-form hidden">
+          <label>Full name<input name="name" placeholder="Your full name" maxlength="80" required></label>
+          <label>College email<input type="email" name="email" placeholder="you@college.edu" autocomplete="email" required></label>
+          <label>Department
+            <select name="department">
+              <option value="">Select department (optional)</option>
+              <option>Computer Science</option><option>Information Technology</option><option>Electronics</option><option>Mechanical</option><option>Civil</option><option>Commerce</option><option>Arts & Science</option><option>Other</option>
+            </select>
+          </label>
+          <label>Password<input type="password" name="password" placeholder="At least 8 characters" minlength="8" autocomplete="new-password" required></label>
+          <button class="btn btn-primary btn-full" type="submit">Create student account <span>→</span></button>
+        </form>
+        <p class="auth-foot" id="authFoot">New to CampusCare? <button id="footSwitch" type="button">Create an account</button></p>
+        <div class="security-note"><span>⌑</span> Your account and complaint details are protected.</div>
+      </div>
+    </section>
+  </main>
+
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="sidebar-brand"><div class="brand-mark">C</div><div class="brand-name">Campus<span>Care</span></div></div>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav id="sideNav">
+        <button class="nav-item active" data-page="overview"><span>◫</span> Overview</button>
+        <button class="nav-item" data-page="complaints"><span>▤</span> <span id="complaintNavLabel">My complaints</span></button>
+        <button class="nav-item student-only" data-page="new"><span>＋</span> Raise a complaint</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-icon">✦</div><strong>Need a hand?</strong><p>Share clear details so your concern can be handled faster.</p></div>
+        <button class="profile-mini" id="profileButton"><div class="avatar" id="sideAvatar">S</div><div class="profile-info"><strong id="sideName">Student</strong><span id="sideRole">Student account</span></div><span class="more">•••</span></button>
+        <button id="logoutBtn" class="logout-btn">↪ <span>Sign out</span></button>
+      </div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar"><div><div class="breadcrumb">Workspace <span>/</span> <strong id="crumb">Overview</strong></div><h2 id="pageTitle">Your campus, in view.</h2></div><div class="topbar-right"><div class="today" id="todayLabel"></div><div class="top-avatar" id="topAvatar">S</div></div></header>
+      <div class="content-area">
+        <section id="page-overview" class="page">
+          <div class="welcome-banner"><div><p class="eyebrow light" id="welcomeEyebrow">YOUR STUDENT SPACE</p><h2 id="welcomeTitle">Hello there 👋</h2><p id="welcomeText">Keep track of your concerns and stay in the loop.</p></div><div class="banner-art"><div class="art-ring"></div><div class="art-card">✓<small>We're listening</small></div></div></div>
+          <div class="section-heading"><div><h3>At a glance</h3><p>A quick look at your complaint activity.</p></div><button class="text-button student-only" data-go="new">＋ Raise a complaint</button></div>
+          <div id="statsGrid" class="stats-grid"></div>
+          <div class="dashboard-grid">
+            <section class="panel recent-panel"><div class="panel-heading"><div><h3>Recent complaints</h3><p>Your latest submitted concerns</p></div><button class="link-button" data-go="complaints">View all →</button></div><div id="recentList"></div></section>
+            <section class="panel process-panel"><div class="panel-heading"><div><h3>How it works</h3><p>From report to resolution</p></div></div><div class="steps"><div class="step"><div class="step-icon lavender">01</div><div><strong>Tell us what's wrong</strong><p>Submit a clear description with the right category.</p></div></div><div class="step"><div class="step-icon peach">02</div><div><strong>We review your concern</strong><p>The college team reviews and updates its progress.</p></div></div><div class="step"><div class="step-icon mint">03</div><div><strong>Track the resolution</strong><p>Check status and read the administrator's response.</p></div></div></div></section>
+          </div>
+        </section>
+        <section id="page-complaints" class="page hidden">
+          <div class="page-intro"><div><h3 id="listHeading">My complaints</h3><p id="listSubheading">All your submitted concerns in one place.</p></div><button class="btn btn-primary student-only" data-go="new">＋ New complaint</button></div>
+          <div class="filter-row"><div class="search-box">⌕ <input id="searchInput" placeholder="Search by ID, title or category..."></div><select id="statusFilter"><option value="">All statuses</option><option>Submitted</option><option>Under Review</option><option>In Progress</option><option>Resolved</option><option>Rejected</option></select><select id="categoryFilter"><option value="">All categories</option><option>Facilities</option><option>Hostel</option><option>Academic</option><option>Harassment</option><option>IT Support</option><option>Transport</option><option>Cleanliness</option><option>Other</option></select></div>
+          <div id="complaintsTable" class="panel table-panel"></div>
+        </section>
+        <section id="page-new" class="page hidden">
+          <div class="page-intro"><div><h3>Raise a complaint</h3><p>Tell us what happened. Your details will be sent to the college administrator.</p></div></div>
+          <div class="form-layout"><form id="complaintForm" class="panel complaint-form">
+            <div class="form-section-title"><span>01</span><div><h4>Complaint details</h4><p>Give your concern a clear title and category.</p></div></div>
+            <label>Complaint title <b>*</b><input name="title" maxlength="120" placeholder="e.g. Broken lights in the library" required></label>
+            <div class="two-fields"><label>Category <b>*</b><select name="category" required><option value="">Choose a category</option><option>Facilities</option><option>Hostel</option><option>Academic</option><option>Harassment</option><option>IT Support</option><option>Transport</option><option>Cleanliness</option><option>Other</option></select></label><label>Priority<select name="priority"><option>Low</option><option selected>Medium</option><option>High</option></select></label></div>
+            <label>Location / department<input name="location" maxlength="150" placeholder="e.g. Block B, second floor (optional)"></label>
+            <label>Description <b>*</b><textarea name="description" rows="6" maxlength="4000" placeholder="Explain the issue, when it happened, and what action would help..." required></textarea><small class="field-hint">Please avoid sharing passwords or other sensitive personal information.</small></label>
+            <div class="form-section-title second-title"><span>02</span><div><h4>Your contact details</h4><p>Attached automatically from your account.</p></div></div>
+            <div class="contact-preview"><div class="avatar" id="formAvatar">S</div><div><strong id="formName">Student Name</strong><p id="formEmail">student@college.edu</p></div><span class="verified">✓ Verified account</span></div>
+            <div class="form-actions"><button type="reset" class="btn btn-ghost">Clear form</button><button type="submit" class="btn btn-primary">Submit complaint <span>→</span></button></div>
+          </form><aside class="panel form-aside"><div class="aside-icon">✦</div><h3>Your concern matters.</h3><p>Every complaint is assigned a unique reference ID so you can track progress.</p><div class="aside-rule"></div><strong>Before you submit</strong><ul><li>Use a specific, descriptive title.</li><li>Include relevant dates and locations.</li><li>Choose the priority that best fits the issue.</li><li>Check your complaint status for updates.</li></ul><div class="privacy-note">♧ &nbsp; Only authorized college administrators can review all submissions.</div></aside></div>
+        </section>
+        <section id="page-detail" class="page hidden"><button class="back-button" data-go="complaints">← Back to complaints</button><div id="detailContent"></div></section>
+      </div>
+      <footer class="footer"><span>© <span id="year"></span> CampusCare</span><span>Built for a more responsive campus <span class="footer-heart">♥</span></span></footer>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
